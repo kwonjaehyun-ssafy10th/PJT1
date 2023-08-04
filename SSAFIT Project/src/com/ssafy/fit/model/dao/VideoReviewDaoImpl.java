@@ -49,18 +49,18 @@ public class VideoReviewDaoImpl implements VideoReviewDao {
 	}
 
 	@Override
-    public List<VideoReview> selectReview(int videoNo) {
-        // 리뷰가 있는지 없는지 먼저 체크
-        List<VideoReview> addlist = new ArrayList<VideoReview>();
-        
-        if ((VideoReviewDb.containsKey(videoNo))) {
-            addlist = VideoReviewDb.get(videoNo);
-        }
+	public List<VideoReview> selectReview(int videoNo) {
+		// 리뷰가 있는지 없는지 먼저 체크
+		List<VideoReview> addlist = new ArrayList<VideoReview>();
+		
+		if ((VideoReviewDb.containsKey(videoNo))) {
+			addlist = VideoReviewDb.get(videoNo);
+		}
 
-        // 리뷰가 있으므로 get - return : List<>
-        return addlist;
+		// 리뷰가 있으므로 get - return : List<>
+		return addlist;
 
-    }
+	}
 	
 
 }
