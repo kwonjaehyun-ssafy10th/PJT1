@@ -7,12 +7,12 @@ public class SsafitUtil {
 	private SsafitUtil() {}
 	
 	public static String input(String msg) {
-		System.out.println(msg);
+		System.out.print(msg);
 		return sc.next();
 	}
 	
 	public static int inputInt(String msg) {
-		System.out.println(msg);
+		System.out.print(msg);
 		return sc.nextInt();
 	}
 	
