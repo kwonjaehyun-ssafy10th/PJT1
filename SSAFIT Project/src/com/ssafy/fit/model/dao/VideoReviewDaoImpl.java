@@ -21,6 +21,7 @@ public class VideoReviewDaoImpl implements VideoReviewDao {
 		return instance;
 	}
 
+<<<<<<< Updated upstream
 	@Override // return 값 : 리뷰 no
 	public int insertReview(VideoReview videoReview) {
 		// 해당하는 리뷰를 모아놓을 List 만들기
@@ -39,6 +40,11 @@ public class VideoReviewDaoImpl implements VideoReviewDao {
 
 		int no = videoReview.getReviewNo();
 		return no;
+=======
+//		VideoReviewDb()
+		
+		return false;
+>>>>>>> Stashed changes
 	}
 
 	@Override

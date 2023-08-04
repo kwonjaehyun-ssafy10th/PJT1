@@ -9,7 +9,7 @@ public class VideoUi {
 	
 	private VideoUi() {}
 	
-	static public VideoUi getInstance() {
+	public static VideoUi getInstance() {
 		return instance;
 	}
 	
