@@ -15,7 +15,8 @@ public class VideoDaoImpl implements VideoDao {
 	}
 	
 	public List<Video> selectVideo() {
-		return list;	
+		return list;
+		
 	}
 	
 	public Video selectVideoByNo(int no) {
