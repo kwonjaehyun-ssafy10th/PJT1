@@ -6,6 +6,7 @@ import com.ssafy.fit.model.VideoReview;
 
 public interface VideoReviewDao {
 
-	boolean insertReview(VideoReview videoReview);
+	int insertReview(VideoReview videoReview);
 	List<VideoReview> selectReview(int videoNo);
+
 }
