@@ -1,6 +1,7 @@
 package com.ssafy.fit.ui;
 
 import com.ssafy.fit.util.SsafitUtil;
+import com.ssafy.fit.test.*;
 
 public class MainUi {
 	
@@ -18,11 +19,13 @@ public class MainUi {
 		System.out.println("0.  종 료");
 		SsafitUtil.printLine();
 
-		while (true) {
+go:		while (true) {
 			switch (SsafitUtil.inputInt("메 뉴 를   선 택 하 세 요   :")) {
-			case 1:
-				VideoUi.getInstance().service();
-				break;
+			case 1:	
+				SsafitApplication.pageint = 2;
+				
+//				VideoUi.getInstance().service();
+				break go;
 			case 0:
 				exit();
 				break;

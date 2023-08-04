@@ -5,6 +5,7 @@ import java.util.List;
 import com.ssafy.fit.model.VideoReview;
 import com.ssafy.fit.model.dao.VideoDaoImpl;
 import com.ssafy.fit.model.dao.VideoReviewDaoImpl;
+import com.ssafy.fit.test.SsafitApplication;
 import com.ssafy.fit.util.SsafitUtil;
 import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
 
@@ -35,7 +36,7 @@ public class VideoReviewUi {
 		
 		
 
-		while (true) {
+go:		while (true) {
 			System.out.println("1.  리 뷰 등 록");
 			System.out.println("0.  이 전 으 로");
 			switch (SsafitUtil.inputInt("메 뉴 를   선 택 하 세 요   :")) {
@@ -43,7 +44,9 @@ public class VideoReviewUi {
 				registReview();
 				break;
 			case 0:
-				vu.listVideo();
+				SsafitApplication.pageint = 2;
+				break go;
+//				vu.listVideo();
 			}
 		}
 		

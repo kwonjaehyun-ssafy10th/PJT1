@@ -3,6 +3,7 @@ package com.ssafy.fit.ui;
 import com.ssafy.fit.model.Video;
 import com.ssafy.fit.model.dao.VideoDao;
 import com.ssafy.fit.model.dao.VideoDaoImpl;
+import com.ssafy.fit.test.SsafitApplication;
 import com.ssafy.fit.util.SsafitUtil;
 
 public class VideoUi {
@@ -21,13 +22,15 @@ public class VideoUi {
 		System.out.println("1.  영 상 목 록");
 		System.out.println("0.  이 전 으 로");
 		SsafitUtil.printLine();
-		while (true) {
+go:		while (true) {
 			switch (SsafitUtil.inputInt("메 뉴 를   선 택 하 세 요   :")) {
 			case 1:
 				listVideo();
-				break;
+				break go;
 			case 0:
-				MainUi.getMu().service();
+				SsafitApplication.pageint = 1;
+				break go;
+//				MainUi.getMu().service();
 			}
 		}
 
@@ -45,11 +48,11 @@ public class VideoUi {
 		System.out.println("1.  영 상 상 세");
 		System.out.println("0.  이 전 으 로");
 		SsafitUtil.printLine();
-		while (true) {
-			switch (SsafitUtil.inputInt("메 뉴 를   선 택 하 세 요   :")) {
+go:		while (true) {
+			switch (SsafitUtil.inputInt(" VU메 뉴 를   선 택 하 세 요   :")) {
 			case 1:
 				detailVideo();
-				break;
+				break go;
 			case 0:
 				service();
 			}
@@ -73,8 +76,10 @@ public class VideoUi {
 			SsafitUtil.printLine();
 			break;
 		}
-		VideoReviewUi vru = VideoReviewUi.getInstance(inputNo);
-		vru.service();
+//		VideoReviewUi vru = VideoReviewUi.getInstance(inputNo);
+//		vru.service();
+		SsafitApplication.movieint = inputNo;
+		SsafitApplication.pageint = 3;
 		
 		
 	}
