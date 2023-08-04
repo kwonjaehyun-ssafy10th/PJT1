@@ -9,7 +9,7 @@ import com.ssafy.fit.model.VideoReview;
 
 public class VideoReviewDaoImpl implements VideoReviewDao {
 
-	private static int reviewNo;
+	private static int reviewNo = 0;
 	// MAP - key : video-no / value : review list
 	private Map<Integer, List<VideoReview>> VideoReviewDb = new HashMap<Integer, List<VideoReview>>();
 	private static VideoReviewDaoImpl instance = new VideoReviewDaoImpl();
@@ -21,9 +21,11 @@ public class VideoReviewDaoImpl implements VideoReviewDao {
 		return instance;
 	}
 
-<<<<<<< Updated upstream
+
 	@Override // return 값 : 리뷰 no
 	public int insertReview(VideoReview videoReview) {
+		
+		videoReview.setReviewNo(++reviewNo);
 		// 해당하는 리뷰를 모아놓을 List 만들기
 		List<VideoReview> addlist = new ArrayList<VideoReview>();
 		// 리뷰가 있는지 없는지 먼저 체크
@@ -40,11 +42,10 @@ public class VideoReviewDaoImpl implements VideoReviewDao {
 
 		int no = videoReview.getReviewNo();
 		return no;
-=======
+
 //		VideoReviewDb()
 		
-		return false;
->>>>>>> Stashed changes
+
 	}
 
 	@Override
