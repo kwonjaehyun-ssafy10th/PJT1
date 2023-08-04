@@ -2,6 +2,10 @@ package com.ssafy.fit.model.dao;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+<<<<<<< Updated upstream
+=======
+import java.io.FileNotFoundException;
+>>>>>>> Stashed changes
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -36,6 +40,7 @@ public class VideoDaoImpl implements VideoDao {
 		return null;
 	}
 	
+<<<<<<< Updated upstream
 	
 	public  void test() throws IOException{
 
@@ -64,5 +69,28 @@ public class VideoDaoImpl implements VideoDao {
 		br.close();
 	}
 
+=======
+	public List<Video> listConstruct() throws IOException {
+	BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("data/video.json")));
+	StringBuilder sb = new StringBuilder();
+	String str = null;
+	
+	
+	while((str=br.readLine())!=null)
+	{
+		sb.append(str).append("\n");
+	}
+
+	Gson gson = new Gson();
+	Video[] arr = gson.fromJson(sb.toString(), Video[].class);
+	
+	for(int i = 0;i<arr.length;i++) {
+		list.add(arr[i]);
+	}
+	br.close();
+	
+	return list;
+	}
+>>>>>>> Stashed changes
 
 }

@@ -1,7 +1,7 @@
 package com.ssafy.fit.ui;
 
 public class MainUi {
-	public void service() {
+	public static void service() {
 		
 	}
 	
