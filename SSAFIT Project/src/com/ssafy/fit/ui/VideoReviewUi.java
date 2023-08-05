@@ -9,10 +9,13 @@ import com.ssafy.fit.test.SsafitApplication;
 import com.ssafy.fit.util.SsafitUtil;
 import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
 
+import MemberInfo.MemberInfoImpl;
+
 public class VideoReviewUi {
 	
 	VideoReviewDaoImpl videoReviewDao = VideoReviewDaoImpl.getInstance();
 	VideoUi vu = VideoUi.getInstance();
+	MemberInfoImpl MI = MemberInfoImpl.getInstance();
 	
 	private static VideoReviewUi instance = new VideoReviewUi(0);
 	
@@ -34,19 +37,32 @@ public class VideoReviewUi {
 		
 		listReview();
 		
-		
+		int serviceNo = 1;
 
-go:		while (true) {
-			System.out.println("1.  리 뷰 등 록");
-			System.out.println("0.  이 전 으 로");
-			switch (SsafitUtil.inputInt("메 뉴 를   선 택 하 세 요   :")) {
-			case 1:
+VRU_service:while (true) {
+			switch (serviceNo) {
+			case 1:{
+				System.out.println("1.  리 뷰 등 록");
+				System.out.println("0.  이 전 으 로");
+				int VRU_pageint = SsafitUtil.inputInt("메 뉴 를   선 택 하 세 요   :");
+				
+				if(VRU_pageint == 1) {
+					serviceNo = 2;
+				}else if(VRU_pageint == 0) {
+					//이전으로 -> VU페이지로 돌아가야함
+					SsafitApplication.pageint = 2;
+					break VRU_service;
+					
+				}else {
+					serviceNo = 1;
+					break;
+				}
+			}
+			case 2:{
 				registReview();
+				serviceNo = 1;
 				break;
-			case 0:
-				SsafitApplication.pageint = 2;
-				break go;
-//				vu.listVideo();
+			}			
 			}
 		}
 		
@@ -70,8 +86,14 @@ go:		while (true) {
 		String content = null;
 		
 		VideoReview R = new VideoReview();
-		nickname = SsafitUtil.input("닉네임을 입력하세요 : ");
-		content = SsafitUtil.input("내용을 입력하세요 : ");
+		if(MI.loginMem.getId().equals("none")) {
+			nickname = SsafitUtil.input("닉네임을 입력하세요 : ");
+		}
+		else {
+			nickname = MI.loginMem.getId();
+			System.out.println("아이디 : " + nickname);
+		}
+	content = SsafitUtil.input("내용을 입력하세요 : ");
 		
 		
 		R.setNickName(nickname);

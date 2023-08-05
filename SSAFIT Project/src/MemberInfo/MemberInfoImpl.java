@@ -18,6 +18,7 @@ public class MemberInfoImpl implements MemberInfo {
 
 	private static MemberInfoImpl instance = new MemberInfoImpl();
 	private List<Member> memList = new ArrayList<Member>();
+	public Member loginMem = new Member("none", "none");
 
 	private MemberInfoImpl() {
 		// JSON에서 memList에 회원정보 등록
@@ -27,21 +28,57 @@ public class MemberInfoImpl implements MemberInfo {
 		}
 	}
 
-	public MemberInfoImpl getInstance() {
+	public static MemberInfoImpl getInstance() {
 		return instance;
 	}
 
-	public void regist(Member member) {
-
-		memList.add(member);
+	
+	public ArrayList<Member> getMemList() {
+		
 		try {
-			saveData();
-		} catch (Exception e) {}
-		;
-		// JSON에 member등록
+			loadData();
+		} catch (Exception e) {
+		}
+		
+		return (ArrayList<Member>) memList;
+	}
+	
+	//로그인 메서드
+	public boolean login(String id, String pw) {
+		
+		for(Member m : memList) {
+			if(m.getId().equals(id) && m.getPassword().equals(pw)) {
+				loginMem = m;
+				return true;
+			}
+		}
+		return false;
 
 	}
 
+	
+	public void regist(Member member) {
+		
+		int  cnt = 0;
+		for(Member m : memList) {
+			if(m.getId().equals(member.getId())) {
+				System.out.println("사용할 수 없는 아이디입니다.");
+				cnt++;
+				break;
+			}
+		}
+
+		if(cnt ==0) {
+			memList.add(member);
+			try {
+				saveData();
+			} catch (Exception e) {}
+			;
+		}
+
+	}
+
+	
 	private void loadData() {
 		try {
 			File file = new File("data/member.json");
@@ -52,6 +89,8 @@ public class MemberInfoImpl implements MemberInfo {
 				sb.append(str).append("\n");
 			}
 
+			//초기화 후 load해야 기존 아이디 중복이 안됨
+			memList = new ArrayList<Member>();
 			Member[] arr = gson.fromJson(sb.toString(), Member[].class);
 			for (int i = 0; i < arr.length; i++) {
 				memList.add(arr[i]);
@@ -63,7 +102,8 @@ public class MemberInfoImpl implements MemberInfo {
 
 	private void saveData() {
 		try {
-			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("data/member.json")));
+			//false값 할당을 통해 기존의 데이터를 덮어씌우는 과정
+			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("data/member.json",false)));
 			String str2 = gson.toJson(memList);
 			bw.write(str2);
 			bw.close();
