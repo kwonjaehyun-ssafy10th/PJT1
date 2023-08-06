@@ -67,7 +67,7 @@ public class VideoReviewUi {
 	}
 
 	private void listReview() {
-		List<VideoReview> list = videoReviewDao.selectReview(videoNo);
+		List<VideoReview> list = videoReviewDao.selectReview(SsafitApplication.videoInt);
 		System.out.printf("영 상 리 뷰   : %d개\n", list.size());
 		SsafitUtil.printLine();
 		for (int i = 0; i < list.size(); i++) {
@@ -93,7 +93,7 @@ public class VideoReviewUi {
 
 		vr.setNickName(nickname);
 		vr.setContent(content);
-		vr.setVideoNo(this.videoNo);
+		vr.setVideoNo(SsafitApplication.videoInt);
 		videoReviewDao.insertReview(vr);
 
 	}
