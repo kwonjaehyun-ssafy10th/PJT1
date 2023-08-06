@@ -6,8 +6,8 @@ public class VideoReview {
 	private int reviewNo;
 	private String nickName;
 	private String content;
-	
-	
+
+
 	public int getVideoNo() {
 		return videoNo;
 	}
@@ -32,7 +32,7 @@ public class VideoReview {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
 
-	
+
+
 }

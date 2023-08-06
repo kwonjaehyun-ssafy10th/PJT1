@@ -17,20 +17,22 @@ public class VideoDaoImpl implements VideoDao {
 	private VideoDaoImpl(){
 		try {listConstruct();}
 		catch (IOException e) {
-			
+
 		}
-		
+
 	}
 
 	static public VideoDaoImpl getInstance() {
 		return instance;
 	}
 
+	@Override
 	public List<Video> selectVideo() {
 		return list;
 
 	}
 
+	@Override
 	public Video selectVideoByNo(int no) {
 		for (Video video : list) {
 			if (video.getNo() == no) {
@@ -40,16 +42,16 @@ public class VideoDaoImpl implements VideoDao {
 		System.out.println("검색하신 번호의 동영상은 존재하지 않습니다.");
 		return null;
 	}
-	
-	
+
+
 	public  void test() throws IOException{
 
 
 		String str = "test";
 		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("data/video.json")));
 		StringBuilder sb = new StringBuilder();
-		
-		
+
+
 		while((str=br.readLine())!=null)
 		{
 			sb.append(str).append("\n");
@@ -57,11 +59,11 @@ public class VideoDaoImpl implements VideoDao {
 
 		Gson gson = new Gson();
 		Video[] arr = gson.fromJson(sb.toString(), Video[].class);
-		
+
 		for(int i = 0;i<arr.length;i++) {
 			list.add(arr[i]);
 		}
-		
+
 //		System.out.println(list);
 		for(Video video:list) {
 			System.out.println(video);
@@ -73,8 +75,8 @@ public class VideoDaoImpl implements VideoDao {
 	BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("data/video.json")));
 	StringBuilder sb = new StringBuilder();
 	String str = null;
-	
-	
+
+
 	while((str=br.readLine())!=null)
 	{
 		sb.append(str).append("\n");
@@ -82,12 +84,12 @@ public class VideoDaoImpl implements VideoDao {
 
 	Gson gson = new Gson();
 	Video[] arr = gson.fromJson(sb.toString(), Video[].class);
-	
+
 	for(int i = 0;i<arr.length;i++) {
 		list.add(arr[i]);
 	}
 	br.close();
-	
+
 	return list;
 	}
 

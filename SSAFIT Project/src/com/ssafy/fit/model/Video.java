@@ -5,7 +5,7 @@ public class Video {
 	private String title;
 	private String part;
 	private String url;
-	
+
 	public Video(int no, String title, String part, String url) {
 		super();
 		this.no = no;
@@ -54,6 +54,6 @@ public class Video {
 	public String toString() {
 		return "Video [no=" + no + ", title=" + title + ", part=" + part + ", url=" + url + "]";
 	}
-	
-	
+
+
 }

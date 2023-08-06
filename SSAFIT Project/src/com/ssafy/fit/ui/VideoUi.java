@@ -18,14 +18,14 @@ public class VideoUi {
 	}
 
 	public void service() {
-		
+
 		int serviceNo = 1;
 
 VU_service : while (true) {
-			
+
 			switch (serviceNo) {
-			
-			//서비스의 페이지 나누기 
+
+			//서비스의 페이지 나누기
 			// 1- main 2-videolist 3-videoDetail
 			case 1:
 			{
@@ -33,20 +33,20 @@ VU_service : while (true) {
 				System.out.println("1.  영 상 목 록");
 				System.out.println("0.  이 전 으 로");
 				SsafitUtil.printLine();
-				int VU_pageint = SsafitUtil.inputInt("메 뉴 를   선 택 하 세 요   :");
-				if(VU_pageint== 0 ) {
+				int VU_pageInt = SsafitUtil.inputInt("메 뉴 를   선 택 하 세 요   :");
+				if(VU_pageInt== 0 ) {
 					//0.이전으로 선택시
 					/*VU_service 종료
-					-> pageint:1 진입*/
-					
-					SsafitApplication.pageint = 1;
+					-> pageInt:1 진입*/
+
+					SsafitApplication.pageInt = 1;
 					break VU_service;
-				}else if(VU_pageint == 1) {
-					//1.영상목록 
+				}else if(VU_pageInt == 1) {
+					//1.영상목록
 					//listVideo진입 --> break없이 그대로
 					serviceNo = 2;
 				}else {
-					//예외값 입력시 -> case문 종료 => while로 다시 실행 
+					//예외값 입력시 -> case문 종료 => while로 다시 실행
 					break;
 				}
 
@@ -56,9 +56,9 @@ VU_service : while (true) {
 				break;
 			case 3:
 				detailVideo();
-				break VU_service;			
+				break VU_service;
 			}
-			
+
 }
 	}
 
@@ -70,16 +70,16 @@ VU_service : while (true) {
 		for (Video video : VideoDaoImpl.getInstance().selectVideo()) {
 			System.out.printf("%d   %s   %s\n", i++, video.getPart(), video.getTitle());
 		}
-		
+
 			SsafitUtil.printLine();
 			System.out.println("1.  영 상 상 세");
 			System.out.println("0.  이 전 으 로");
-			SsafitUtil.printLine();	
-			
-			int VU_pageint = SsafitUtil.inputInt(" 메 뉴 를   선 택 하 세 요   :");
+			SsafitUtil.printLine();
+
+			int VU_pageint = SsafitUtil.inputInt("메 뉴 를   선 택 하 세 요   :");
 			//1- detail video
-			//0-함수 종료 -> 이전 while문 재진입 // case 
-			
+			//0-함수 종료 -> 이전 while문 재진입 // case
+
 			if(VU_pageint == 0) {
 				//serviceNo =1 videoUI메인 화면
 				return 1;
@@ -110,8 +110,8 @@ VU_service : while (true) {
 			break;
 		}
 
-		SsafitApplication.movieint = inputNo;
-		SsafitApplication.pageint = 3;
+		SsafitApplication.videoInt = inputNo;
+		SsafitApplication.pageInt = 3;
 
 	}
 

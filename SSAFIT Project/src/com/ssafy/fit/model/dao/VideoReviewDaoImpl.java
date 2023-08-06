@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.ssafy.fit.model.VideoReview;
+import com.ssafy.fit.util.SsafitUtil;
 
 public class VideoReviewDaoImpl implements VideoReviewDao {
 
@@ -24,13 +25,13 @@ public class VideoReviewDaoImpl implements VideoReviewDao {
 
 	@Override // return 값 : 리뷰 no
 	public int insertReview(VideoReview videoReview) {
-		
+
 		videoReview.setReviewNo(++reviewNo);
 		// 해당하는 리뷰를 모아놓을 List 만들기
 		List<VideoReview> addlist = new ArrayList<VideoReview>();
 		// 리뷰가 있는지 없는지 먼저 체크
 		if (!(VideoReviewDb.containsKey(videoReview.getVideoNo()))) {
-			System.out.println("check");
+//			System.out.println("check");
 			addlist.add(videoReview);
 			// 해당하는 리뷰가 없을 경우 새로운 key로 삽입
 			VideoReviewDb.put(videoReview.getVideoNo(), addlist);
@@ -39,12 +40,14 @@ public class VideoReviewDaoImpl implements VideoReviewDao {
 			addlist.add(videoReview);
 			VideoReviewDb.replace(videoReview.getVideoNo(), addlist);
 		}
+		System.out.println("리뷰 등록 완료!");
+		SsafitUtil.printLine();
 
 		int no = videoReview.getReviewNo();
 		return no;
 
 //		VideoReviewDb()
-		
+
 
 	}
 
@@ -52,7 +55,7 @@ public class VideoReviewDaoImpl implements VideoReviewDao {
 	public List<VideoReview> selectReview(int videoNo) {
 		// 리뷰가 있는지 없는지 먼저 체크
 		List<VideoReview> addlist = new ArrayList<VideoReview>();
-		
+
 		if ((VideoReviewDb.containsKey(videoNo))) {
 			addlist = VideoReviewDb.get(videoNo);
 		}
@@ -61,6 +64,6 @@ public class VideoReviewDaoImpl implements VideoReviewDao {
 		return addlist;
 
 	}
-	
+
 
 }
